@@ -58,4 +58,4 @@ Graphical output:
 
 		glm2dot -e IEEE_37node.glm | dot -Tpng -o blah.png && open blah.png
 
-![Rendered GLM](http://i.imgur.com/L90lIQb.png)
+![Rendered GLM](http://i.imgur.com/OgqAYTl.png)

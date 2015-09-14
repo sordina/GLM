@@ -24,8 +24,8 @@ main :: IO ()
 main = getArgs >>= start
 
 start :: [String] -> IO ()
-start ["-h"     ] = help
-start ["--help" ] = help
+start ["-h"     ]       = help
+start ["--help" ]       = help
 start ("-e"     : args) = go args >>= mapM_ (outputResult withEdges)
 start ("--edges": args) = go args >>= mapM_ (outputResult withEdges)
 start args              = go args >>= mapM_ (outputResult noEdges)
@@ -61,8 +61,11 @@ processFile f = processContents f `fmap` readFile f
 processContents :: String -> String -> ParseResult
 processContents = P.parse glmParser
 
+chash :: Entry -> String
+chash = (++ "ef") . take 4 . str5 . (!! 1) . unSelector
+
 graph :: Entry -> [String]
-graph e@(Entry ("object":_:_) _) = fromMaybe [ [i|"#{nhash e}" [label="#{name e}"];|] ] (edge e)
+graph e@(Entry ("object":n:_) _) = fromMaybe [ [i|"#{nhash e}" [label="#{name e}", fillcolor="##{chash e}", style=filled];|] ] (edge e)
 graph e@(Entry s c) = [ [i|// Missed entry #{s} - #{name e}|] ]
 
 edge e@(Entry _ c) = do
