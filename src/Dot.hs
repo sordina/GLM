@@ -26,7 +26,7 @@ outputResult :: Show a => Either a GLMFile -> IO ()
 outputResult (Left  issue)   = print "Got an error:" >> print issue
 outputResult (Right results) = putStrLn [i|digraph {#{unl $ concatMap graph (unGLM results)}}|]
   where
-  unl s = "\n" ++ unlines s
+  unl s = "\n" ++ unlines (map ("\t" ++) s)
 
 help :: IO ()
 help = putStrLn "Usage: glm2dot [FILE]*"
