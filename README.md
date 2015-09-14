@@ -53,3 +53,9 @@ Example:
 			"1315e07dc" -> "6bf7ab42e"; // node3 -> load4
 			"6bf7ab42e" [label="load4"];
 		}
+
+Graphical output:
+
+		glm2dot -e IEEE_37node.glm | dot -Tpng -o blah.png && open blah.png
+
+![Rendered GLM](http://i.imgur.com/L90lIQb.png)
