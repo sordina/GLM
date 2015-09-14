@@ -1,0 +1,4 @@
+dist/
+hugsin
+.cabal-sandbox/
+cabal.sandbox.config
