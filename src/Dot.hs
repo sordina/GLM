@@ -49,7 +49,7 @@ refs e@(Entry _ c) = fromMaybe [] $ do
   return [name e, f, t]
 
 help :: IO ()
-help = putStrLn "Usage: glm2dot [FILE]*"
+help = putStrLn "Usage: glm2dot [-h] [-e] [FILE]*"
 
 go :: [String] -> IO [ParseResult]
 go xs@(_:_) = mapM processFile xs
@@ -62,13 +62,13 @@ processContents :: String -> String -> ParseResult
 processContents = P.parse glmParser
 
 graph :: Entry -> [String]
-graph e@(Entry ("object":s:_) c) = [i|"#{nhash e}" [label="#{name e}"];|] : fromMaybe [] (edge c)
+graph e@(Entry ("object":_:_) _) = fromMaybe [ [i|"#{nhash e}" [label="#{name e}"];|] ] (edge e)
 graph e@(Entry s c) = [ [i|// Missed entry #{s} - #{name e}|] ]
 
-edge c = do
+edge e@(Entry _ c) = do
   f <- lookup "from" c
   t <- lookup "to"   c
-  return [[i|"#{str5 f}" -> "#{str5 t}"; // #{f} -> #{t}|]]
+  return [[i|"#{str5 f}" -> "#{str5 t}" [label="#{name e}"]; // #{f} -> #{t}|]]
 
 nhash :: Entry -> String
 nhash = str5 . name

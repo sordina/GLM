@@ -13,7 +13,7 @@ Library functions are currently not exposed.
 
 Usage:
 
-		glm2dot [FILE]*
+		glm2dot [-h] [-e] [FILE]*
 
 Also accepts GLM format on STDIN.
 
