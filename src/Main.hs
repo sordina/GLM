@@ -1,8 +1,7 @@
 module Main where
 
-import Text.Parsec as P
 import System.Environment
-import Parser
+import Parser2
 
 main :: IO ()
 main = getArgs >>= start
@@ -12,9 +11,9 @@ start ["-h"]     = help
 start ["--help"] = help
 start args       = go args >>= mapM_ outputResult
 
-outputResult :: Show a => Either a GLMFile -> IO ()
+outputResult :: ParseResult -> IO ()
 outputResult (Left  issue)   = print "Got an error:" >> print issue
-outputResult (Right results) = mapM_ print $ unGLM results
+outputResult (Right results) = mapM_ print results
 
 help :: IO ()
 help = putStrLn "Usage: glm [FILE]*"
@@ -27,4 +26,4 @@ processFile :: String -> IO ParseResult
 processFile f = readFile f >>= processContents f
 
 processContents :: String -> String -> IO ParseResult
-processContents f c = return $ P.parse glmParser f c
+processContents f c = return $ glmParser f c

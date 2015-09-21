@@ -1,0 +1,5 @@
+#!/bin/sh
+
+glm2dot "$@" | dot -Tpng -o/tmp/glm2dot_$$.png
+
+exec open /tmp/glm2dot_$$.png
