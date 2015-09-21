@@ -9,7 +9,13 @@ Includes two executables:
 * glm2props - List properties found in file
 * glm2dot - Output a Dot file for use with GraphViz
 
-Library functions are currently not exposed.
+Library functions are also exposesd under:
+
+* Dot
+* Nesting
+* Parser2
+* Tokenizer
+
 
 Usage:
 
