@@ -22,6 +22,12 @@ Usage:
 Also accepts GLM format on STDIN.
 
 
+Downloads:
+
+* <http://sordina.binaries.s3.amazonaws.com/glm2props-0.1.0.0-MacOSX-10.9.5-13F1077.zip>
+* <http://sordina.binaries.s3.amazonaws.com/glm2dot-0.1.0.0-MacOSX-10.9.5-13F1077.zip>
+
+
 Example:
 
 		bash-3.2$ head IEEE_4_node.glm
