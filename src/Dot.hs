@@ -4,40 +4,45 @@
 
 module Main where
 
+import Parser2
+import qualified Nesting as N
+
 import Data.Maybe
 import System.Environment
 import System.Exit
-import Parser2
 import Data.Digest.Pure.MD5
 import Data.List
 import Data.String.Interpolate
 import qualified Data.ByteString.Lazy.Char8 as BS
 
-data Options = Options { edges :: Bool } deriving (Eq, Show)
+data Options = Options { edges   :: Bool
+                       , flatten :: Bool } deriving (Eq, Show)
 
-withEdges, noEdges :: Options
-withEdges = Options { edges = True  }
-noEdges   = Options { edges = False }
+def :: Options
+def = Options { edges   = False
+              , flatten = False }
 
 str5 :: String -> String
 str5 = take 9 . show . md5 . BS.pack
 
 main :: IO ()
-main = getArgs >>= start
+main = getArgs >>= start def
 
-start :: [String] -> IO ()
-start ["-h"     ]       = help
-start ["--help" ]       = help
-start ("-e"     : args) = go args >>= mapM_ (outputResult withEdges)
-start ("--edges": args) = go args >>= mapM_ (outputResult withEdges)
-start args              = go args >>= mapM_ (outputResult noEdges)
+start :: Options -> [String] -> IO ()
+start _ ["-h"     ]         = help
+start _ ["--help" ]         = help
+start o ("-e"       : args) = start (o {edges   = True}) args
+start o ("--edges"  : args) = start (o {edges   = True}) args
+start o ("-f"       : args) = start (o {flatten = True}) args
+start o ("--flatten": args) = start (o {flatten = True}) args
+start o args                = go args >>= mapM_ (outputResult o)
 
 outputResult :: Options -> ParseResult -> IO ()
 outputResult _    (Left  issue)   = putStrLn "Got an error:" >> print issue >> exitFailure
 outputResult opts (Right results) = putStrLn [i|digraph {#{unl $ concatMap graph (filter crit ung)}}|]
   where
   unl s = "\n" ++ unlines (map ("\t" ++) s)
-  ung   = results
+  ung   = if (flatten opts) then N.flatten results else results
   rt    = concatMap refs ung
   crit  = criteria (edges opts) rt
 
@@ -82,10 +87,8 @@ nhash :: Entry -> String
 nhash = str5 . name
 
 name :: Entry -> String
-name (Entry (_:s:_) p) = maybe s noquote (lookup "name" c)
-  where
-  c = catProps p
-name _                 = "noname"
+name (Entry (_:s:_) p) = maybe s noquote (lookup "name" c) where c = catProps p
+name _ = "noname"
 
 -- TODO: Shouldn't need this now...
 --
