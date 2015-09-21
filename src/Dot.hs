@@ -10,6 +10,7 @@ import qualified Nesting as N
 import Data.Maybe
 import System.Environment
 import System.Exit
+import System.IO
 import Data.Digest.Pure.MD5
 import Data.List
 import Data.String.Interpolate
@@ -38,13 +39,16 @@ start o ("--flatten": args) = start (o {flatten = True}) args
 start o args                = go args >>= mapM_ (outputResult o)
 
 outputResult :: Options -> ParseResult -> IO ()
-outputResult _    (Left  issue)   = putStrLn "Got an error:" >> print issue >> exitFailure
+outputResult _    (Left  issue)   = putStrLn "Got an error:" >> spew issue >> exitFailure
 outputResult opts (Right results) = putStrLn [i|digraph {#{unl $ concatMap graph (filter crit ung)}}|]
   where
   unl s = "\n" ++ unlines (map ("\t" ++) s)
   ung   = if (flatten opts) then N.flatten results else results
   rt    = concatMap refs ung
   crit  = criteria (edges opts) rt
+
+spew :: Show a => a -> IO ()
+spew = hPutStrLn stderr . show
 
 criteria :: Bool -> [String] -> Entry -> Bool
 criteria False _ _ = True

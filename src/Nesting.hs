@@ -10,9 +10,17 @@ import Data.Maybe
 import Control.Lens
 import Control.Monad.State
 
-prop_flatten = print $ flatten [Entry ["l1"] [Prop ("name", "n1"), Nested (Entry ["l2"] [])]]
+-- Properties
 
-main = prop_flatten
+prop_flatten :: Bool
+prop_flatten = (== 3) $ length $ flatten [Entry ["l1"] [Prop ("name", "n1"), Nested (Entry ["l2"] [])]]
+
+-- Main Nesting Function
+
+flatten :: [Entry] -> [Entry]
+flatten entries = evalState (flatPack entries) 0
+
+-- Nesting Helper Functions
 
 catNested :: Entry -> [Entry]
 catNested = toListOf (contents . each . _Nested)
@@ -25,9 +33,6 @@ addName n = over contents (++ [Prop ("name",n)])
 
 phantomLink :: String -> String -> Entry
 phantomLink f t = Entry ["object","link"] [Prop ("name", "nl_"), Prop ("from", f), Prop ("to", t)]
-
-flatten :: [Entry] -> [Entry]
-flatten entries = evalState (flatPack entries) 0
 
 flatPack :: [Entry] -> State Int [Entry]
 flatPack es = do

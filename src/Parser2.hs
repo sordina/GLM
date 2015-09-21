@@ -42,14 +42,14 @@ catProps = toListOf (each . _Prop)
 
 -- Positive Testing Properties
 
-prop_topLevel_1, prop_topLevel_2, prop_topLevel_3, prop_topLevel_4, prop_topLevel_5, prop_topLevel_6 :: Bool
+prop_topLevel_1, prop_topLevel_2, prop_topLevel_3, prop_topLevel_4, prop_topLevel_5, prop_topLevel_6, prop_topLevel_7 :: Bool
 prop_topLevel_1 = isLen 1 $ glmParser "TEST" "x { y zzz; }"
 prop_topLevel_2 = isLen 2 $ glmParser "TEST" "q { r s; }; t u {v w x;}"
 prop_topLevel_3 = isLen 2 $ glmParser "TEST" "q { a {b c}; r s; }; t u {v w x;}"
 prop_topLevel_4 = isLen 2 $ glmParser "TEST" "q { a {b c}; r s \"a super string!\"; }; t u {v w x;}"
 prop_topLevel_5 = isLen 2 $ glmParser "TEST" "q { a {b c}; r s \"a super string!\"; }; t u {v w x;}\n"
 prop_topLevel_6 = isLen 2 $ glmParser "TEST" "a { b c; }\n// comment\nc d { e f g; }"
-prop_topLevel_7 = isRight $ glmParser "TEST" "a { b c; }\nmodule tape;\nc d { e f g; }"
+prop_topLevel_7 = isLen 3 $ glmParser "TEST" "a { b c; }\nmodule tape;\nc d { e f g; }"
 
 -- Imported from old parser
 

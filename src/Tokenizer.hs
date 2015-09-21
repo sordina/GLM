@@ -89,7 +89,7 @@ pComment = do
 -- Word Parser
 
 parseWord :: P String
-parseWord = P.many1 (P.noneOf " ;\n\t\r{}\"\\/#")
+parseWord = P.many1 (P.noneOf " ;\n\t\r{}\"\\#")
 
 -- String Parser
 
