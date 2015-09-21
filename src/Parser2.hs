@@ -15,6 +15,10 @@ import Text.Parsec ((<|>))
 import Control.Lens
 import Data.Either
 
+import Test.Framework
+import Test.Framework.TH
+import Test.Framework.Providers.QuickCheck2
+
 import Control.Applicative hiding (many, (<|>))
 
 -- Data Types and Instances
@@ -39,6 +43,11 @@ unContents = _contents
 
 catProps :: Each s s EntryItem EntryItem => s -> [(String, String)]
 catProps = toListOf (each . _Prop)
+
+-- Tests
+
+tests :: Test
+tests = $(testGroupGenerator)
 
 -- Positive Testing Properties
 

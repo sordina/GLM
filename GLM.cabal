@@ -1,5 +1,5 @@
 name:                GLM
-version:             0.2.0.0
+version:             0.3.0.0
 synopsis:            GLM Project...
 homepage:            http://github.com/sordina/GLM
 license:             MIT
@@ -9,14 +9,28 @@ maintainer:          maydwell@gmail.com
 build-type:          Simple
 cabal-version:       >=1.10
 
-executable glm2props
-  main-is:             Main.hs
-  build-depends:       base -any, parsec, interpolate, bytestring, pureMD5, transformers, lens
-  hs-source-dirs:      src
+Library
   default-language:    Haskell2010
+  Hs-source-dirs:      src
+  Exposed-modules:     Dot, Nesting, Parser2, Tokenizer
+  build-depends:       base -any, parsec, interpolate, bytestring, pureMD5, transformers, lens, mtl,
+                       test-framework, test-framework-quickcheck2, QuickCheck, test-framework-th
+
+executable glm2props
+  default-language:    Haskell2010
+  main-is:             Main.hs
+  build-depends:       base -any, parsec, lens, test-framework, test-framework-th, test-framework-quickcheck2, pureMD5, interpolate, bytestring, mtl, GLM
+  hs-source-dirs:      src
 
 executable glm2dot
-  main-is:             Dot.hs
-  build-depends:       base -any, parsec, interpolate, bytestring, pureMD5, transformers, lens, mtl
-  hs-source-dirs:      src
   default-language:    Haskell2010
+  main-is:             Dot.hs
+  build-depends:       base -any, parsec, lens, test-framework, test-framework-th, test-framework-quickcheck2, pureMD5, interpolate, bytestring, mtl, GLM
+  hs-source-dirs:      src
+
+Test-Suite test-glm
+  default-language:    Haskell2010
+  Type:                exitcode-stdio-1.0
+  Hs-Source-Dirs:      src,test
+  Main-is:             TestMain.hs
+  build-depends:       base -any, parsec, lens, test-framework, test-framework-th, test-framework-quickcheck2, mtl, GLM

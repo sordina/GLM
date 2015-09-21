@@ -2,7 +2,7 @@
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE ViewPatterns #-}
 
-module Main where
+module Dot where
 
 import Parser2
 import qualified Nesting as N

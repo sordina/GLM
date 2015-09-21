@@ -16,6 +16,10 @@ import Data.Monoid
 import Control.Lens
 import Control.Applicative hiding (many, (<|>))
 
+import Test.Framework
+import Test.Framework.TH
+import Test.Framework.Providers.QuickCheck2
+
 -- Data Types and Instances
 
 type P a = P.Parsec String     () a
@@ -49,6 +53,13 @@ parseTokenPos = do
 
 pToken :: P Token
 pToken = pComment <|> pLBrace <|> pRBrace <|> pSemi <|> pString <|> pWord
+
+-- Tests
+
+tests :: Test
+tests = $(testGroupGenerator)
+
+-- Props
 
 prop_tokens_1, prop_tokens_2, prop_tokens_3, prop_tokens_4, prop_tokens_5 :: Bool
 prop_tokens_1 = isRight $ P.parse parseTokens "TEST" "\"he\\\"as\\ndf\\\"llo\";;;"

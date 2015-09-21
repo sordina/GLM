@@ -1,6 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeFamilies #-}
 
 module Nesting where
@@ -9,6 +10,15 @@ import Parser2
 import Data.Maybe
 import Control.Lens
 import Control.Monad.State
+
+import Test.Framework
+import Test.Framework.TH
+import Test.Framework.Providers.QuickCheck2
+
+-- Tests
+
+tests :: Test
+tests = $(testGroupGenerator)
 
 -- Properties
 
@@ -52,10 +62,14 @@ fabulate :: Entry -> Entry -> State Int [Entry]
 fabulate p c = do
   modify succ
   s <- get
-  let cname = "unnested_" ++ show s
+  let cname = getType c ++ show s ++ "_"
   return [c & addName cname & addParent pname, phantomLink pname cname]
   where
   pname = getName p
 
 getName :: Entry -> String
 getName = fromMaybe "unnamed" . lookup "name" . toListOf (contents . each . _Prop)
+
+getType :: Entry -> String
+getType (Entry (_:t:_) _) = t
+getType _                 = "unknown"
