@@ -59,7 +59,7 @@ refs e@(Entry _ p) = fromMaybe [] $ do
   c = catProps p
 
 help :: IO ()
-help = putStrLn "Usage: glm2dot [-h] [-e] [FILE]*"
+help = putStrLn "Usage: glm2dot [-h|--help] [-e|--edges] [-f|--flatten] [FILE]*"
 
 go :: [String] -> IO [ParseResult]
 go xs@(_:_) = mapM processFile xs

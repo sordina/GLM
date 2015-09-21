@@ -13,7 +13,11 @@ Library functions are currently not exposed.
 
 Usage:
 
-		glm2dot [-h] [-e] [FILE]*
+		Usage: glm2dot [-h|--help] [-e|--edges] [-f|--flatten] [FILE]*
+
+		--flatten    creates new linked nodes for nested nodes
+		--edge       only renders nodes that are connected to others
+
 
 Also accepts GLM format on STDIN.
 
