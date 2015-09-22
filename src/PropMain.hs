@@ -1,7 +1,7 @@
 module Main where
 
 import System.Environment
-import Parser2
+import GLM.Parser
 
 main :: IO ()
 main = getArgs >>= start

@@ -1,5 +1,5 @@
 name:                GLM
-version:             0.3.0.0
+version:             0.4.0.0
 synopsis:            Simple Gridlab-D GLM parser and utilities.
 description:         Simple Gridlab-D GLM parser and utilities.
 category:            Language
@@ -18,13 +18,13 @@ source-repository head
 Library
   default-language:    Haskell2010
   Hs-source-dirs:      src
-  Exposed-modules:     Dot, Nesting, Parser2, Tokenizer
+  Exposed-modules:     GLM.Dot, GLM.Nesting, GLM.Parser, GLM.Tokenizer
   build-depends:       base <= 5, parsec, interpolate, bytestring, pureMD5, transformers, lens, mtl,
                        test-framework, test-framework-quickcheck2, QuickCheck, test-framework-th
 
 executable glm2props
   default-language:    Haskell2010
-  main-is:             Main.hs
+  main-is:             PropMain.hs
   build-depends:       base <= 5, parsec, lens, test-framework, test-framework-th, test-framework-quickcheck2, pureMD5, interpolate, bytestring, mtl, GLM
   hs-source-dirs:      src
 
@@ -32,6 +32,12 @@ executable glm2dot
   default-language:    Haskell2010
   main-is:             DotMain.hs
   build-depends:       base <= 5, parsec, lens, test-framework, test-framework-th, test-framework-quickcheck2, pureMD5, interpolate, bytestring, mtl, GLM
+  hs-source-dirs:      src
+
+executable glm2json
+  default-language:    Haskell2010
+  main-is:             JSONMain.hs
+  build-depends:       base <= 5, parsec, lens, test-framework, test-framework-th, test-framework-quickcheck2, pureMD5, interpolate, bytestring, mtl, GLM, aeson
   hs-source-dirs:      src
 
 Test-Suite test-glm

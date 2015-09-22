@@ -2,10 +2,10 @@
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE ViewPatterns #-}
 
-module Dot where
+module GLM.Dot where
 
-import Parser2
-import qualified Nesting as N
+import GLM.Parser
+import qualified GLM.Nesting as N
 
 import Data.Maybe
 import System.Environment

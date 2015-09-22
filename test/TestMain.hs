@@ -4,9 +4,9 @@ module Main where
 
 import Test.Framework
 
-import qualified Parser2   as P
-import qualified Tokenizer as T
-import qualified Nesting   as N
+import qualified GLM.Parser    as P
+import qualified GLM.Tokenizer as T
+import qualified GLM.Nesting   as N
 
 main :: IO ()
 main = defaultMain

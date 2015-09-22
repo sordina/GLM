@@ -5,7 +5,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 
-module Tokenizer where
+module GLM.Tokenizer where
 
 import qualified Text.Parsec as P
 import Text.Parsec ((<|>))

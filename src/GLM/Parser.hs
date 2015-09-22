@@ -7,9 +7,10 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE NoMonomorphismRestriction #-}
 
-module Parser2 where
+module GLM.Parser where
 
-import qualified Tokenizer as T
+import qualified GLM.Tokenizer as T
+
 import qualified Text.Parsec as P
 import Text.Parsec ((<|>))
 import Control.Lens

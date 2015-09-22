@@ -30,6 +30,7 @@ Also accepts GLM format on STDIN.
 
 Downloads:
 
+* <http://sordina.binaries.s3.amazonaws.com/GLM-0.4.0.0-MacOSX-10.9.5-13F1077.zip>
 * <http://sordina.binaries.s3.amazonaws.com/glm2props-0.3.0.0-MacOSX-10.9.5-13F1077.zip>
 * <http://sordina.binaries.s3.amazonaws.com/glm2dot-0.3.0.0-MacOSX-10.9.5-13F1077.zip>
 * <http://sordina.binaries.s3.amazonaws.com/glm2props-0.1.0.0-MacOSX-10.9.5-13F1077.zip>

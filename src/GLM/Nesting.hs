@@ -4,9 +4,10 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeFamilies #-}
 
-module Nesting where
+module GLM.Nesting where
 
-import Parser2
+import GLM.Parser
+
 import Data.Maybe
 import Control.Lens
 import Control.Monad.State
