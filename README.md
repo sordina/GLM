@@ -4,18 +4,25 @@ A small [GridLab-D](http://gridlab-d.sourceforge.net) markup parser.
 
 Currently incomplete, but does work for simple files.
 
-Includes two executables:
+Includes the executables:
 
 * glm2props - List properties found in file
-* glm2dot - Output a Dot file for use with GraphViz
+* glm2dot   - Output a Dot file for use with GraphViz
+* glm2json  - Convert GLM format to JSON format
 
 Library functions are also exposesd under:
 
-* Dot
-* Nesting
-* Parser2
-* Tokenizer
+* GLM.Dot
+* GLM.Nesting
+* GLM.Parser2
+* GLM.Tokenizer
+* GLM.JSON
 
+## Library
+
+The main library interface can be found in GLM.Parser.
+
+## glm2dot
 
 Usage:
 
@@ -28,8 +35,14 @@ Usage:
 Also accepts GLM format on STDIN.
 
 
+## glm2json
+
+## glmprops
+
+
 Downloads:
 
+* <http://sordina.binaries.s3.amazonaws.com/GLM-0.5.0.0-MacOSX-10.9.5-13F1077.zip>
 * <http://sordina.binaries.s3.amazonaws.com/GLM-0.4.0.0-MacOSX-10.9.5-13F1077.zip>
 * <http://sordina.binaries.s3.amazonaws.com/glm2props-0.3.0.0-MacOSX-10.9.5-13F1077.zip>
 * <http://sordina.binaries.s3.amazonaws.com/glm2dot-0.3.0.0-MacOSX-10.9.5-13F1077.zip>
