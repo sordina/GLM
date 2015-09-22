@@ -9,6 +9,7 @@ import Data.String
 import Control.Lens
 import Control.Arrow
 import GLM.Parser
+import System.Environment
 import System.Exit
 import System.IO
 import qualified Data.ByteString.Lazy.Char8 as B
@@ -25,8 +26,16 @@ instance ToJSON Entry where
 
 main :: IO ()
 main = do
-  c <- getContents
-  case glmParser "STDIN" c of
+  a <- getArgs
+  case a of [] -> getContents >>= go "STDIN"
+            xs -> mapM_ doF xs
+
+doF :: FilePath -> IO ()
+doF f = readFile f >>= go f
+
+go :: String -> String -> IO ()
+go f c =
+  case glmParser f c of
          Left  err -> oops err
          Right res -> B.putStrLn $ encode $ res
 
