@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+set -e
 
 glm2dot "$@" | dot -Tpng -o/tmp/glm2dot_$$.png
 

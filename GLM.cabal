@@ -30,7 +30,7 @@ executable glm2props
 
 executable glm2dot
   default-language:    Haskell2010
-  main-is:             Dot.hs
+  main-is:             DotMain.hs
   build-depends:       base <= 5, parsec, lens, test-framework, test-framework-th, test-framework-quickcheck2, pureMD5, interpolate, bytestring, mtl, GLM
   hs-source-dirs:      src
 
