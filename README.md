@@ -39,6 +39,9 @@ Also accepts GLM format on STDIN.
 
 ## glmprops
 
+# Links
+
+Hackage: <https://hackage.haskell.org/package/GLM>
 
 Downloads:
 
