@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+glm2dot "$@" > /tmp/glm2dot_$$.dot
+
+open -a Graphviz /tmp/glm2dot_$$.dot
