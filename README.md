@@ -45,6 +45,7 @@ Hackage: <https://hackage.haskell.org/package/GLM>
 
 Downloads:
 
+* <http://sordina.binaries.s3.amazonaws.com/GLM-0.7.0.0-MacOSX-10.9.5-13F1077.zip>
 * <http://sordina.binaries.s3.amazonaws.com/GLM-0.5.0.0-MacOSX-10.9.5-13F1077.zip>
 * <http://sordina.binaries.s3.amazonaws.com/GLM-0.4.0.0-MacOSX-10.9.5-13F1077.zip>
 * <http://sordina.binaries.s3.amazonaws.com/glm2props-0.3.0.0-MacOSX-10.9.5-13F1077.zip>
